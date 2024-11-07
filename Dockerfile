@@ -1,11 +1,11 @@
-FROM mongo:4.2
-MAINTAINER Ilya Stepanov <dev@ilyastepanov.com>
+FROM mongo:8.0.3
+LABEL org.opencontainers.image.authors="Ilya Stepanov <dev@ilyastepanov.com>"
 
 RUN apt-get update && \
-    apt-get install -y cron python3 python3-pip && \
+    apt-get install -y cron python3 python3-pip pipx && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install awscli
+RUN pipx install awscli
 
 ADD backup.sh /backup.sh
 ADD entrypoint.sh /entrypoint.sh
